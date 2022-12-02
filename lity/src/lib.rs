@@ -10,6 +10,7 @@ pub fn application(window: Window) {
     window_build.set_title(window.title);
     window_build.set_size(window.size);
     window_build.resizable(window.resizable);
+    window_build.show_titlebar(window.show_title_bar);
     window_build.set_handler(window_connector);
     let window_build = window_build.build().unwrap();
 
