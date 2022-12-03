@@ -5,15 +5,17 @@ pub struct Window {
     pub size: crate::Size,
     pub resizable: bool,
     pub position: crate::Point,
+    pub show_title_bar: bool
 }
 
-impl Window {
+impl Window {   
     pub fn new() -> Self {
         Self {
             title: "Lity".to_string(),
             size: crate::Size::new(600., 400.),
             resizable: true,
-            position: crate::Point::new(100., 100.)
+            position: crate::Point::new(100., 100.),
+            show_title_bar: true,
         }
     }
 
@@ -36,4 +38,10 @@ impl Window {
         self.position = position;
         self
     }
+
+    pub fn set_title_bar(mut self, visible: bool) -> Self {
+        self.show_title_bar = visible;
+        self
+    }
+
 }
