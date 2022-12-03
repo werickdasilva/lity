@@ -1,11 +1,16 @@
+use self::events::WindowEvent;
+
 pub(crate) mod window_connector;
+pub mod events;
+
 
 pub struct Window {
     pub title: String,
     pub size: crate::Size,
     pub resizable: bool,
     pub position: crate::Point,
-    pub show_title_bar: bool
+    pub show_title_bar: bool,
+    pub on_close: Option<fn(&mut WindowEvent)>
 }
 
 impl Window {   
@@ -16,6 +21,7 @@ impl Window {
             resizable: true,
             position: crate::Point::new(100., 100.),
             show_title_bar: true,
+            on_close: None,
         }
     }
 
@@ -43,5 +49,11 @@ impl Window {
         self.show_title_bar = visible;
         self
     }
+
+    pub fn set_on_close(mut self, func: fn(&mut WindowEvent)) -> Self {
+        self.on_close = Some(func);
+        self
+    }
+
 
 }
