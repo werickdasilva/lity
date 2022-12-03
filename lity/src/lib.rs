@@ -5,7 +5,7 @@ pub use  shell::{kurbo::*, piet::*};
 
 pub fn application(window: Window) {
     let app =  shell::Application::new().unwrap();
-    let window_connector = Box::new(window_connector::WindowConnector::new());
+    let window_connector = Box::new(window_connector::WindowConnector::new(window.on_close));
     let mut window_build = shell::WindowBuilder::new(app.clone());
     window_build.set_title(window.title);
     window_build.set_size(window.size);
