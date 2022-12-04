@@ -1,4 +1,4 @@
-use lity::{application, Point, Size, Window};
+use lity::{application, Point, Size, Window, events::WindowEvent};
 
 #[test]
 pub fn show_window() {
@@ -30,6 +30,7 @@ fn resizable_window() {
     let window = Window::new().set_resizable(true);
     application(window)
 }
+
 #[test]
 fn show_config_window() {
     let window = Window::new()
@@ -37,6 +38,16 @@ fn show_config_window() {
         .set_size(Size::new(200., 200.))
         .set_resizable(false)
         .set_positio(Point::new(0., 0.));
-    
-        application(window)
+
+    application(window)
+}
+
+#[test]
+fn event_close() {
+    let window = Window::new().set_on_close(|e| {
+        println!("Close Window....");
+        *e = WindowEvent::OnExit;
+    });
+
+    application(window)
 }
